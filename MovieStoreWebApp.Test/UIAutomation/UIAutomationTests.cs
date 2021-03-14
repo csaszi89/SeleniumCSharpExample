@@ -1,9 +1,9 @@
 ﻿using Interop.UIAutomationClient;
 using MovieStoreWebApp.Test.Definitions;
+using MovieStoreWebApp.Test.Utils;
 using NUnit.Framework;
 using System;
 using System.Diagnostics;
-using System.Threading;
 
 namespace MovieStoreWebApp.Test.UIAutomation
 {
@@ -39,10 +39,7 @@ namespace MovieStoreWebApp.Test.UIAutomation
             string url = "https://localhost:5001";
             var browserApp = StartBrowser(browserType, url);
 
-            while (browserApp.MainWindowHandle == IntPtr.Zero)
-            {
-                Thread.Sleep(100);
-            }
+            _ = Retry.Until(() => browserApp.MainWindowHandle != IntPtr.Zero);
 
             var aut = new CUIAutomation8();
             var browserWindow = aut.ElementFromHandle(browserApp.MainWindowHandle);
@@ -50,10 +47,10 @@ namespace MovieStoreWebApp.Test.UIAutomation
 
             var tabItem = browserWindow.FindFirst(TreeScope.TreeScope_Descendants, aut.CreatePropertyCondition(UIA_PropertyIds.UIA_ControlTypePropertyId, UIA_ControlTypeIds.UIA_TabItemControlTypeId));
 
-            while (tabItem.CurrentName != "Home page - MovieStore")
-            {
-                Thread.Sleep(100);
-            }
+            Assert.IsTrue(Retry.Until(() => tabItem.CurrentName == "Home page - MovieStore"));
+
+            browserApp.CloseMainWindow();
+            browserApp.WaitForExit();
         }
 
         private Process StartBrowser(BrowserType browserType, string url)
