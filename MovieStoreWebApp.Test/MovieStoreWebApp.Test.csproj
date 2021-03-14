@@ -49,6 +49,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Definitions\BrowserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selenium\SeleniumTests.cs" />
     <Compile Include="UIAutomation\UIAutomationTests.cs" />

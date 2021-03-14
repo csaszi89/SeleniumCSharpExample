@@ -1,4 +1,5 @@
 ﻿using Interop.UIAutomationClient;
+using MovieStoreWebApp.Test.Definitions;
 using NUnit.Framework;
 using System;
 using System.Diagnostics;
@@ -6,12 +7,6 @@ using System.Threading;
 
 namespace MovieStoreWebApp.Test.UIAutomation
 {
-    public enum BrowserType
-    {
-        Chrome,
-        MicrosoftEdge
-    }
-
     [TestFixture]
     public class UIAutomationTests
     {
@@ -63,7 +58,20 @@ namespace MovieStoreWebApp.Test.UIAutomation
 
         private Process StartBrowser(BrowserType browserType, string url)
         {
-            return browserType == BrowserType.MicrosoftEdge ? Process.Start($"microsoft-edge:{url}") : Process.Start($"chrome.exe", url);
+            var psi = new ProcessStartInfo
+            {
+                WindowStyle = ProcessWindowStyle.Maximized
+            };
+            if (browserType == BrowserType.MicrosoftEdge)
+            {
+                psi.FileName = $"microsoft-edge:{url}";
+            }
+            else
+            {
+                psi.FileName = "chrome.exe";
+                psi.Arguments = url;
+            }
+            return Process.Start(psi);
         }
     }
 }
