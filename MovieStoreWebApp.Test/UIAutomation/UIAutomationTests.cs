@@ -10,23 +10,16 @@ namespace MovieStoreWebApp.Test.UIAutomation
     [TestFixture]
     public class UIAutomationTests
     {
-        //Process _webApp;
-
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            //var psi = new ProcessStartInfo(@".\..\..\..\..\MovieStoreWebApp\bin\Debug\netcoreapp3.1\MovieStoreWebApp.exe")
-            //{
-            //    WorkingDirectory = AppDomain.CurrentDomain.BaseDirectory
-            //};
-
-            //_webApp = Process.Start(psi);
+            // Run MovieStoreWebApp manually, calling it automatically is going to be solved later...
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
-            //_webApp.Kill();
+
         }
 
         [Test]
