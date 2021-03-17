@@ -52,14 +52,19 @@ namespace MovieStoreWebApp.Test.UIAutomation
             {
                 WindowStyle = ProcessWindowStyle.Maximized
             };
-            if (browserType == BrowserType.MicrosoftEdge)
+
+            if (browserType == BrowserType.Chrome)
+            {
+                psi.FileName = "chrome.exe";
+                psi.Arguments = url;
+            }
+            else if (browserType == BrowserType.MicrosoftEdge)
             {
                 psi.FileName = $"microsoft-edge:{url}";
             }
             else
             {
-                psi.FileName = "chrome.exe";
-                psi.Arguments = url;
+                throw new NotSupportedException($"Browser type {browserType} not supported");
             }
             return Process.Start(psi);
         }
