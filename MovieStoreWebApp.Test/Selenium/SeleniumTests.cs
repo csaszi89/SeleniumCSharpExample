@@ -31,10 +31,12 @@ namespace MovieStoreWebApp.Test.Selenium
         public void TestThatMovieStoreCanBeOpen(BrowserType browserType)
         {
             string url = "https://localhost:5001";
-            var browserApp = StartBrowser(browserType);
-            browserApp.Navigate().GoToUrl(url);
-            Assert.IsTrue(Retry.Until(() => browserApp.Title == "Home page - MovieStore"));
-            browserApp.Quit();
+
+            using (var browser = StartBrowser(browserType))
+            {
+                browser.Navigate().GoToUrl(url);
+                Assert.IsTrue(Retry.Until(() => browser.Title == "Home page - MovieStore"));
+            }
         }
 
         public IWebDriver StartBrowser(BrowserType browserType)
