@@ -1,4 +1,5 @@
 ﻿using MovieStoreWebApp.Test.Definitions;
+using MovieStoreWebApp.Test.Pages;
 using MovieStoreWebApp.Test.Utils;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -30,12 +31,10 @@ namespace MovieStoreWebApp.Test.Selenium
         [Description("The home page can be open")]
         public void TestThatMovieStoreCanBeOpen(BrowserType browserType)
         {
-            string url = "https://localhost:5001";
-
             using (var browser = StartBrowser(browserType))
             {
-                browser.Navigate().GoToUrl(url);
-                Assert.IsTrue(Retry.Until(() => browser.Title == "Home page - MovieStore"));
+                browser.Navigate().GoToUrl(HomePage.Url);
+                Assert.IsTrue(Retry.Until(() => browser.Title == HomePage.Title));
             }
         }
 
@@ -45,11 +44,11 @@ namespace MovieStoreWebApp.Test.Selenium
             {
                 var chromeOptions = new ChromeOptions();
                 chromeOptions.AddArgument("--start-maximized");
-                return new ChromeDriver(chromeOptions);
+                return new ChromeDriver(ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory, FileNames.ChromeDriverExecutable), chromeOptions);
             }
             if (browserType == BrowserType.MicrosoftEdge)
             {
-                var driver = new EdgeDriver(EdgeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory, "msedgedriver.exe"));
+                var driver = new EdgeDriver(EdgeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory, FileNames.EdgeDriverExecutable));
                 driver.Manage().Window.Maximize();
                 return driver;
             }

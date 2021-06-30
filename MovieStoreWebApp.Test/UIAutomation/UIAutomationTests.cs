@@ -1,5 +1,6 @@
 ﻿using Interop.UIAutomationClient;
 using MovieStoreWebApp.Test.Definitions;
+using MovieStoreWebApp.Test.Pages;
 using MovieStoreWebApp.Test.Utils;
 using NUnit.Framework;
 using System;
@@ -29,8 +30,7 @@ namespace MovieStoreWebApp.Test.UIAutomation
         [Description("The home page can be open")]
         public void TestThatMovieStoreCanBeOpen(BrowserType browserType)
         {
-            string url = "https://localhost:5001";
-            var browserApp = StartBrowser(browserType, url);
+            var browserApp = StartBrowser(browserType, HomePage.Url);
 
             _ = Retry.Until(() => browserApp.MainWindowHandle != IntPtr.Zero);
 
@@ -40,10 +40,11 @@ namespace MovieStoreWebApp.Test.UIAutomation
 
             var tabItem = browserWindow.FindFirst(TreeScope.TreeScope_Descendants, aut.CreatePropertyCondition(UIA_PropertyIds.UIA_ControlTypePropertyId, UIA_ControlTypeIds.UIA_TabItemControlTypeId));
 
-            Assert.IsTrue(Retry.Until(() => tabItem.CurrentName == "Home page - MovieStore"));
+            Assert.IsTrue(Retry.Until(() => tabItem.CurrentName == HomePage.Title));
 
             browserApp.CloseMainWindow();
             browserApp.WaitForExit();
+            browserApp.Dispose();
         }
 
         private Process StartBrowser(BrowserType browserType, string url)
