@@ -7,6 +7,9 @@ Tools used:
 * VisualStudio 2019 Community
 
 NuGet Packages used:
-* https://www.nuget.org/packages/Interop.UIAutomationClient/
-* https://www.nuget.org/packages/NUnit/
-* https://www.nuget.org/packages/NUnit3TestAdapter/3.17.0
+* Interop.UIAutomationClient
+* NUnit
+* NUnit3TestAdapter
+* Selenium.WebDriver
+* Selenium.WebDriver.ChromeDriver
+* Selenium.WebDriver.MSEdgeDriver
