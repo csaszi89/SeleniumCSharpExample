@@ -26,21 +26,32 @@ namespace MovieStoreWebApp.Models
                         Title = "Titanic",
                         ReleaseDate = DateTime.Parse("1998-1-22"),
                         Genre = "Drama",
-                        Price = 7.99M
-                    },                    
+                        Price = 7.99M,
+                        Rating = "PG"
+                    },
                     new Movie
                     {
                         Title = "Scream",
                         ReleaseDate = DateTime.Parse("1998-5-7"),
                         Genre = "Horror",
-                        Price = 8.99M
+                        Price = 8.99M,
+                        Rating = "NC-17"
                     },
                     new Movie
                     {
                         Title = "American Pie",
                         ReleaseDate = DateTime.Parse("1999-12-2"),
                         Genre = "Comedy",
-                        Price = 9.99M
+                        Price = 9.99M,
+                        Rating = "R"
+                    },
+                    new Movie
+                    {
+                        Title = "The Lion King",
+                        ReleaseDate = DateTime.Parse("1994-06-12"),
+                        Genre = "Animation",
+                        Price = 6.99M,
+                        Rating = "G"
                     }
                 );
                 context.SaveChanges();
