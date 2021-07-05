@@ -9,35 +9,55 @@ using System;
 
 namespace MovieStoreWebApp.Test.Selenium
 {
-    [TestFixture]
+    [TestFixture(BrowserType.Chrome)]
+    [TestFixture(BrowserType.MicrosoftEdge)]
+    [Parallelizable(ParallelScope.All)]
     public class SeleniumTests
     {
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            // Run MovieStoreWebApp manually, calling it automatically is going to be solved later...
-        }
+        private readonly BrowserType _browserType;
 
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
+        public SeleniumTests(BrowserType browserType)
         {
-
+            _browserType = browserType;
         }
 
         [Test]
-        [TestCase(BrowserType.MicrosoftEdge)]
-        [TestCase(BrowserType.Chrome)]
-        [Parallelizable(ParallelScope.All)]
-        [Description("The home page can be open")]
-        public void TestThatMovieStoreCanBeOpen(BrowserType browserType)
+        [Description("The MovieStore Home page can be open")]
+        [Category(TestCategory.Smoke)]
+        public void TestThatHomePageCanBeOpen()
         {
-            using (var browser = StartBrowser(browserType))
+            using (var browser = StartBrowser(_browserType))
             {
                 browser.Navigate().GoToUrl(HomePage.Url);
                 Assert.IsTrue(Retry.Until(() => browser.Title == HomePage.Title));
             }
         }
 
+        [Test]
+        [Description("The MovieStore Movies page can be open")]
+        [Category(TestCategory.Smoke)]
+        public void TestThatMoviesPageCanBeOpen()
+        {
+            using (var browser = StartBrowser(_browserType))
+            {
+                browser.Navigate().GoToUrl(MoviesPage.Url);
+                Assert.IsTrue(Retry.Until(() => browser.Title == MoviesPage.Title));
+            }
+        }
+
+        [Test]
+        [Description("The MovieStore Privacy page can be open")]
+        [Category(TestCategory.Smoke)]
+        public void TestThatPrivacyPageCanBeOpen()
+        {
+            using (var browser = StartBrowser(_browserType))
+            {
+                browser.Navigate().GoToUrl(PrivacyPage.Url);
+                Assert.IsTrue(Retry.Until(() => browser.Title == PrivacyPage.Title));
+            }
+        }
+
+        // TODO: move to test base class
         public IWebDriver StartBrowser(BrowserType browserType)
         {
             if (browserType == BrowserType.Chrome)

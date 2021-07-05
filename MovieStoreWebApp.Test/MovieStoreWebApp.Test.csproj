@@ -58,9 +58,13 @@
   <ItemGroup>
     <Compile Include="Definitions\BrowserType.cs" />
     <Compile Include="Definitions\FileNames.cs" />
+    <Compile Include="Definitions\TestCategory.cs" />
     <Compile Include="Pages\HomePage.cs" />
+    <Compile Include="Pages\MoviesPage.cs" />
+    <Compile Include="Pages\PrivacyPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Selenium\SeleniumTests.cs" />
+    <Compile Include="TestSetInitializer.cs" />
     <Compile Include="UIAutomation\UIAutomationTests.cs" />
     <Compile Include="Utils\Retry.cs" />
   </ItemGroup>
