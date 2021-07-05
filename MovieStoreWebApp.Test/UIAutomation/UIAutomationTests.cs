@@ -11,18 +11,6 @@ namespace MovieStoreWebApp.Test.UIAutomation
     [TestFixture]
     public class UIAutomationTests
     {
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            // Run MovieStoreWebApp manually, calling it automatically is going to be solved later...
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-
-        }
-
         [Test]
         [TestCase(BrowserType.MicrosoftEdge)]
         [TestCase(BrowserType.Chrome)]
@@ -30,7 +18,8 @@ namespace MovieStoreWebApp.Test.UIAutomation
         [Description("The home page can be open")]
         public void TestThatMovieStoreCanBeOpen(BrowserType browserType)
         {
-            var browserApp = StartBrowser(browserType, HomePage.Url);
+            var homePage = new HomePage();
+            var browserApp = StartBrowser(browserType, homePage.Url);
 
             _ = Retry.Until(() => browserApp.MainWindowHandle != IntPtr.Zero);
 
@@ -40,7 +29,7 @@ namespace MovieStoreWebApp.Test.UIAutomation
 
             var tabItem = browserWindow.FindFirst(TreeScope.TreeScope_Descendants, aut.CreatePropertyCondition(UIA_PropertyIds.UIA_ControlTypePropertyId, UIA_ControlTypeIds.UIA_TabItemControlTypeId));
 
-            Assert.IsTrue(Retry.Until(() => tabItem.CurrentName == HomePage.Title));
+            Assert.IsTrue(Retry.Until(() => tabItem.CurrentName == homePage.Title));
 
             browserApp.CloseMainWindow();
             browserApp.WaitForExit();

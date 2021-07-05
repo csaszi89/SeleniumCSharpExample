@@ -1,8 +1,10 @@
-﻿namespace MovieStoreWebApp.Test.Pages
+﻿using MovieStoreWebApp.Test.Attributes;
+
+namespace MovieStoreWebApp.Test.Pages
 {
-    public class PrivacyPage
+    [Url("Privacy")]
+    [Title("Privacy Policy")]
+    public class PrivacyPage : MovieStorePage
     {
-        public const string Url = "https://localhost:5001/Privacy";
-        public const string Title = "Privacy Policy - MovieStore";
     }
 }

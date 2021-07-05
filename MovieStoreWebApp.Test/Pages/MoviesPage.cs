@@ -1,8 +1,10 @@
-﻿namespace MovieStoreWebApp.Test.Pages
+﻿using MovieStoreWebApp.Test.Attributes;
+
+namespace MovieStoreWebApp.Test.Pages
 {
-    public class MoviesPage
+    [Url("Movies")]
+    [Title("Movies")]
+    public class MoviesPage : MovieStorePage
     {
-        public const string Url = "https://localhost:5001/Movies";
-        public const string Title = "Movies - MovieStore";
     }
 }

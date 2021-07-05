@@ -1,8 +1,10 @@
-﻿namespace MovieStoreWebApp.Test.Pages
+﻿using MovieStoreWebApp.Test.Attributes;
+
+namespace MovieStoreWebApp.Test.Pages
 {
-    public class HomePage
+    [Url("")]
+    [Title("Home page")]
+    public class HomePage : MovieStorePage
     {
-        public const string Url = "https://localhost:5001";
-        public const string Title = "Home page - MovieStore";
     }
 }
