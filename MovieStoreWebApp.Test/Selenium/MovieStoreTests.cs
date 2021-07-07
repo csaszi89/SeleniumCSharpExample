@@ -1,7 +1,8 @@
 ﻿using MovieStoreWebApp.Test.Definitions;
 using MovieStoreWebApp.Test.Pages;
-using MovieStoreWebApp.Test.Utils;
 using NUnit.Framework;
+using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace MovieStoreWebApp.Test.Selenium
 {
@@ -26,7 +27,8 @@ namespace MovieStoreWebApp.Test.Selenium
             {
                 var homePage = new HomePage();
                 browser.Navigate().GoToUrl(homePage.Url);
-                Assert.IsTrue(Retry.Until(() => homePage.Verify(browser)));
+                var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(3));
+                Assert.IsTrue(wait.Until((d) => homePage.Verify(browser)));
             }
         }
 
@@ -39,7 +41,8 @@ namespace MovieStoreWebApp.Test.Selenium
             {
                 var moviesPage = new MoviesPage();
                 browser.Navigate().GoToUrl(moviesPage.Url);
-                Assert.IsTrue(Retry.Until(() => moviesPage.Verify(browser)));
+                var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(3));
+                Assert.IsTrue(wait.Until((d) => moviesPage.Verify(browser)));
             }
         }
 
@@ -52,7 +55,8 @@ namespace MovieStoreWebApp.Test.Selenium
             {
                 var privacyPage = new PrivacyPage();
                 browser.Navigate().GoToUrl(privacyPage.Url);
-                Assert.IsTrue(Retry.Until(() => privacyPage.Verify(browser)));
+                var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(3));
+                Assert.IsTrue(wait.Until((d) => privacyPage.Verify(browser)));
             }
         }
     }
