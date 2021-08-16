@@ -1,4 +1,5 @@
 ﻿using MovieStoreWebApp.Test.Attributes;
+using OpenQA.Selenium;
 
 namespace MovieStoreWebApp.Test.Pages
 {
@@ -6,5 +7,8 @@ namespace MovieStoreWebApp.Test.Pages
     [Title("Privacy Policy")]
     public class PrivacyPage : MovieStorePage
     {
+        public PrivacyPage(IWebDriver driver) : base(driver)
+        {
+        }
     }
 }

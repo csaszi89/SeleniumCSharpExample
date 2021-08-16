@@ -1,10 +1,6 @@
 ﻿using MovieStoreWebApp.Test.Definitions;
 using MovieStoreWebApp.Test.Pages;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
-using System;
-using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
 namespace MovieStoreWebApp.Test.Selenium
 {
@@ -27,10 +23,7 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                var homePage = new HomePage();
-                browser.Navigate().GoToUrl(homePage.Url);
-                var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(3));
-                Assert.IsTrue(wait.Until((d) => homePage.Verify(browser)));
+                Assert.IsTrue(new HomePage(browser).NavigateTo());
             }
         }
 
@@ -41,10 +34,7 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                var moviesPage = new MoviesPage();
-                browser.Navigate().GoToUrl(moviesPage.Url);
-                var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(3));
-                Assert.IsTrue(wait.Until((d) => moviesPage.Verify(browser)));
+                Assert.IsTrue(new MoviesPage(browser).NavigateTo());
             }
         }
 
@@ -55,10 +45,7 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                var privacyPage = new PrivacyPage();
-                browser.Navigate().GoToUrl(privacyPage.Url);
-                var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(3));
-                Assert.IsTrue(wait.Until((d) => privacyPage.Verify(browser)));
+                Assert.IsTrue(new PrivacyPage(browser).NavigateTo());
             }
         }
 
@@ -69,13 +56,9 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                var homePage = new HomePage();
-                browser.Navigate().GoToUrl(homePage.Url);
-                var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(3));
-                var moviesButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.LinkText("Movies")));
-                moviesButton.Click();
-                var moviesPage = new MoviesPage();
-                Assert.IsTrue(wait.Until((d) => moviesPage.Verify(browser)));
+                var homePage = new HomePage(browser);
+                _ = homePage.NavigateTo();
+                Assert.IsTrue(homePage.NavigateTo<MoviesPage>(homePage.MoviesLink, out _));
             }
         }
 
@@ -86,13 +69,9 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                var homePage = new HomePage();
-                browser.Navigate().GoToUrl(homePage.Url);
-                var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(3));
-                var privacyButton = wait.Until(ExpectedConditions.ElementToBeClickable(By.LinkText("Privacy")));
-                privacyButton.Click();
-                var privacyPage = new PrivacyPage();
-                Assert.IsTrue(wait.Until((d) => privacyPage.Verify(browser)));
+                var homePage = new HomePage(browser);
+                _ = homePage.NavigateTo();
+                Assert.IsTrue(homePage.NavigateTo<PrivacyPage>(homePage.PrivacyLink, out _));
             }
         }
     }
