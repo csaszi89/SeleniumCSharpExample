@@ -1,4 +1,5 @@
 ﻿using MovieStoreWebApp.Test.Definitions;
+using MovieStoreWebApp.Test.Extensions;
 using MovieStoreWebApp.Test.Pages;
 using NUnit.Framework;
 
@@ -23,7 +24,7 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                Assert.IsTrue(new HomePage(browser).NavigateTo());
+                Assert.IsTrue(browser.NavigateTo<HomePage>().Verify());
             }
         }
 
@@ -34,7 +35,7 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                Assert.IsTrue(new MoviesPage(browser).NavigateTo());
+                Assert.IsTrue(browser.NavigateTo<MoviesPage>().Verify());
             }
         }
 
@@ -45,7 +46,7 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                Assert.IsTrue(new PrivacyPage(browser).NavigateTo());
+                Assert.IsTrue(browser.NavigateTo<PrivacyPage>().Verify());
             }
         }
 
@@ -56,9 +57,9 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                var homePage = new HomePage(browser);
-                _ = homePage.NavigateTo();
-                Assert.IsTrue(homePage.NavigateTo<MoviesPage>(homePage.MoviesLink, out _));
+                var homePage = browser.NavigateTo<HomePage>();
+                var moviesPage = homePage.ClickMoviesLink();
+                Assert.IsTrue(moviesPage.Verify());
             }
         }
 
@@ -69,9 +70,9 @@ namespace MovieStoreWebApp.Test.Selenium
         {
             using (var browser = StartBrowser(_browserType))
             {
-                var homePage = new HomePage(browser);
-                _ = homePage.NavigateTo();
-                Assert.IsTrue(homePage.NavigateTo<PrivacyPage>(homePage.PrivacyLink, out _));
+                var homePage = browser.NavigateTo<HomePage>();
+                var privacyPage = homePage.ClickPrivacyLink();
+                Assert.IsTrue(privacyPage.Verify());
             }
         }
     }

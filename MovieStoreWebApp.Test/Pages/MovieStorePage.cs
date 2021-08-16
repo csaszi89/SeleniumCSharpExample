@@ -31,38 +31,15 @@ namespace MovieStoreWebApp.Test.Pages
 
         public virtual string Title => $"{((TitleAttribute)Attribute.GetCustomAttribute(GetType(), typeof(TitleAttribute))).Title} - {TitleConstant}";
 
-        /// <summary>
-        /// Navigates to the page and waits till the url and title are okay.
-        /// </summary>
-        /// <returns></returns>
-        public virtual bool NavigateTo()
+        public virtual bool Verify()
         {
-            _driver.Navigate().GoToUrl(Url);
-            var wait = new WebDriverWait(_driver, _pageLoadTimeout);
-
             try
             {
+                var wait = new WebDriverWait(_driver, _pageLoadTimeout);
                 return wait.Until(ExpectedConditions.UrlToBe(Url)) && wait.Until(ExpectedConditions.TitleIs(Title));
             }
             catch (WebDriverTimeoutException)
             {
-                return false;
-            }
-        }
-
-        public virtual bool NavigateTo<T>(IWebElement navigationElement, out T result) where T : MovieStorePage
-        {
-            navigationElement.Click();
-            result = (T)Activator.CreateInstance(typeof(T), _driver);
-            var wait = new WebDriverWait(_driver, _pageLoadTimeout);
-
-            try
-            {
-                return wait.Until(ExpectedConditions.UrlToBe(result.Url)) && wait.Until(ExpectedConditions.TitleIs(result.Title));
-            }
-            catch (WebDriverTimeoutException)
-            {
-                result = null;
                 return false;
             }
         }
