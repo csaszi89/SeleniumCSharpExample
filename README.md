@@ -13,3 +13,5 @@ NuGet Packages used:
 * Selenium.WebDriver
 * Selenium.WebDriver.ChromeDriver
 * Selenium.WebDriver.MSEdgeDriver
+* Selenium.Support
+* DotNetSeleniumExtras.WaitHelpers
