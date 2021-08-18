@@ -1,7 +1,10 @@
 ﻿using MovieStoreWebApp.Test.Definitions;
 using MovieStoreWebApp.Test.Extensions;
 using MovieStoreWebApp.Test.Pages;
+using MovieStoreWebApp.Test.Utils;
 using NUnit.Framework;
+using System.Data.SqlClient;
+using System.Linq;
 
 namespace MovieStoreWebApp.Test.Selenium
 {
@@ -73,6 +76,44 @@ namespace MovieStoreWebApp.Test.Selenium
                 var homePage = browser.NavigateTo<HomePage>();
                 var privacyPage = homePage.ClickPrivacyLink();
                 Assert.IsTrue(privacyPage.Verify());
+            }
+        }
+
+        [Test]
+        [NonParallelizable]
+        [Description("Testing the Create new movie operation")]
+        [Category(TestCategory.Regression), Category(TestCategory.Positive)]
+        public void TestThatUserCanCreateNewMovie()
+        {
+            using (var browser = StartBrowser(_browserType))
+            {
+                var moviesPage = browser.NavigateTo<MoviesPage>();
+                var movies = moviesPage.Movies;
+                Assert.IsFalse(movies.Any(m => m == TestData.Movies.TheHangover.Title));
+                var createNewPage = moviesPage.ClickCreateNewLink();
+                createNewPage.CreateNewMovie(TestData.Movies.TheHangover);
+                movies = moviesPage.Movies;
+                Assert.IsTrue(movies.Any(m => m == TestData.Movies.TheHangover.Title));
+            }
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            // Clean db after test TestThatUserCanCreateNewMovie
+            if (TestContext.CurrentContext.Test.MethodName == nameof(TestThatUserCanCreateNewMovie))
+            {
+                string sqlCommand = "DELETE FROM " + "dbo.Movie" + " WHERE " + "Title" + " = '" + TestData.Movies.TheHangover.Title + "'";
+
+                using (SqlConnection con = new SqlConnection(Configurations.ConnectionString))
+                {
+                    con.Open();
+                    using (SqlCommand command = new SqlCommand(sqlCommand, con))
+                    {
+                        _ = command.ExecuteNonQuery();
+                    }
+                    con.Close();
+                }
             }
         }
     }
