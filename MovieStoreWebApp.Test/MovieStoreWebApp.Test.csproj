@@ -66,6 +66,7 @@
     <Compile Include="Definitions\FileNames.cs" />
     <Compile Include="Definitions\TestCategory.cs" />
     <Compile Include="Extensions\IWebDriverExtensions.cs" />
+    <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Pages\CreateMoviePage.cs" />
     <Compile Include="Pages\MovieStorePage.cs" />
     <Compile Include="Pages\HomePage.cs" />

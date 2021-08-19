@@ -1,9 +1,9 @@
 ﻿using MovieStoreWebApp.Test.Definitions;
 using MovieStoreWebApp.Test.Extensions;
+using MovieStoreWebApp.Test.Helpers;
 using MovieStoreWebApp.Test.Pages;
 using MovieStoreWebApp.Test.Utils;
 using NUnit.Framework;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace MovieStoreWebApp.Test.Selenium
@@ -80,6 +80,22 @@ namespace MovieStoreWebApp.Test.Selenium
         }
 
         [Test]
+        [Description("Testing seed data is present correctly")]
+        [Category(TestCategory.Smoke)]
+        public void TestThatSeedDataIsPresentCorrectly()
+        {
+            using (var browser = StartBrowser(_browserType))
+            {
+                var moviesPage = browser.NavigateTo<MoviesPage>();
+                var movies = moviesPage.Movies;
+                Assert.IsTrue(movies.Any(m => m == "Titanic"));
+                Assert.IsTrue(movies.Any(m => m == "Scream"));
+                Assert.IsTrue(movies.Any(m => m == "American Pie"));
+                Assert.IsTrue(movies.Any(m => m == "The Lion King"));
+            }
+        }
+
+        [Test]
         [NonParallelizable]
         [Description("Testing the Create new movie operation")]
         [Category(TestCategory.Regression), Category(TestCategory.Positive)]
@@ -103,17 +119,7 @@ namespace MovieStoreWebApp.Test.Selenium
             // Clean db after test TestThatUserCanCreateNewMovie
             if (TestContext.CurrentContext.Test.MethodName == nameof(TestThatUserCanCreateNewMovie))
             {
-                string sqlCommand = "DELETE FROM " + "dbo.Movie" + " WHERE " + "Title" + " = '" + TestData.Movies.TheHangover.Title + "'";
-
-                using (SqlConnection con = new SqlConnection(Configurations.ConnectionString))
-                {
-                    con.Open();
-                    using (SqlCommand command = new SqlCommand(sqlCommand, con))
-                    {
-                        _ = command.ExecuteNonQuery();
-                    }
-                    con.Close();
-                }
+                DBHelper.DeleteMovie(TestData.Movies.TheHangover.Title);
             }
         }
     }
