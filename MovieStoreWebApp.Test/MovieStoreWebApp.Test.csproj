@@ -68,6 +68,7 @@
     <Compile Include="Extensions\IWebDriverExtensions.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Pages\CreateMoviePage.cs" />
+    <Compile Include="Pages\DeleteMoviePage.cs" />
     <Compile Include="Pages\MovieStorePage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\MoviesPage.cs" />

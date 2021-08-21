@@ -96,6 +96,22 @@ namespace MovieStoreWebApp.Test.Selenium
         }
 
         [Test]
+        [Description("Testing the search moview operation")]
+        [Category(TestCategory.Regression), Category(TestCategory.Positive)]
+        public void TestThatUserCanSearchMovie()
+        {
+            using (var browser = StartBrowser(_browserType))
+            {
+                var moviesPage = browser.NavigateTo<MoviesPage>();
+                Assert.AreEqual(4, moviesPage.Movies.Count());
+                moviesPage.SearchMovie("Titanic");
+                Assert.AreEqual(1, moviesPage.Movies.Count());
+                moviesPage.SearchMovie(string.Empty);
+                Assert.AreEqual(4, moviesPage.Movies.Count());
+            }
+        }
+
+        [Test]
         [NonParallelizable]
         [Description("Testing the Create new movie operation")]
         [Category(TestCategory.Regression), Category(TestCategory.Positive)]
@@ -106,10 +122,41 @@ namespace MovieStoreWebApp.Test.Selenium
                 var moviesPage = browser.NavigateTo<MoviesPage>();
                 var movies = moviesPage.Movies;
                 Assert.IsFalse(movies.Any(m => m == TestData.Movies.TheHangover.Title));
-                var createNewPage = moviesPage.ClickCreateNewLink();
-                createNewPage.CreateNewMovie(TestData.Movies.TheHangover);
+                var createMoviePage = moviesPage.ClickCreateNewLink();
+                Assert.IsTrue(createMoviePage.Verify());
+                moviesPage = createMoviePage.CreateNewMovie(TestData.Movies.TheHangover);
                 movies = moviesPage.Movies;
                 Assert.IsTrue(movies.Any(m => m == TestData.Movies.TheHangover.Title));
+            }
+        }
+
+
+        [Test]
+        [NonParallelizable]
+        [Description("Testing the Delete movie operation")]
+        [Category(TestCategory.Regression), Category(TestCategory.Positive)]
+        public void TestThatUserCanDeleteMovie()
+        {
+            using (var browser = StartBrowser(_browserType))
+            {
+                var moviesPage = browser.NavigateTo<MoviesPage>();
+                var movies = moviesPage.Movies;
+                Assert.IsTrue(movies.Any(m => m == TestData.Movies.TheHangover.Title));
+                var deleteMoviePage = moviesPage.ClickDeleteMovieLink(TestData.Movies.TheHangover.Title);
+                Assert.IsTrue(deleteMoviePage.VerifyMovie(TestData.Movies.TheHangover.Title));
+                moviesPage = deleteMoviePage.ClickDeleteButton();
+                movies = moviesPage.Movies;
+                Assert.IsFalse(movies.Any(m => m == TestData.Movies.TheHangover.Title));
+            }
+        }
+
+        [SetUp]
+        public void SetUp()
+        {
+            // SetUp db before test TestThatUserCanDeleteMovie
+            if (TestContext.CurrentContext.Test.MethodName == nameof(TestThatUserCanDeleteMovie))
+            {
+                DBHelper.AddMovie(TestData.Movies.TheHangover);
             }
         }
 

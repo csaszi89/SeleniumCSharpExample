@@ -1,18 +1,39 @@
 ﻿using MovieStoreWebApp.Test.Utils;
+using System;
 using System.Data.SqlClient;
 
 namespace MovieStoreWebApp.Test.Helpers
 {
     public static class DBHelper
     {
-        public static void DeleteMovie(string title)
+        public static void AddMovie((string Title, DateTime ReleaseDate, string Genre, decimal Price, string Rating) movie)
         {
-            string sqlCommand = "DELETE FROM " + "dbo.Movie" + " WHERE " + "Title" + " = '" + title + "'";
-
+            string sql = "INSERT INTO dbo.Movie (Title,ReleaseDate,Genre,Price,Rating) VALUES (@val1, @val2, @val3, @val4, @val5)";
             using (SqlConnection con = new SqlConnection(Configurations.ConnectionString))
             {
                 con.Open();
-                using (SqlCommand command = new SqlCommand(sqlCommand, con))
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = con;
+                    command.CommandText = sql;
+                    command.Parameters.AddWithValue("@val1", movie.Title);
+                    command.Parameters.AddWithValue("@val2", movie.ReleaseDate);
+                    command.Parameters.AddWithValue("@val3", movie.Genre);
+                    command.Parameters.AddWithValue("@val4", movie.Price);
+                    command.Parameters.AddWithValue("@val5", movie.Rating);
+                    _ = command.ExecuteNonQuery();
+                }
+                con.Close();
+            }
+        }
+
+        public static void DeleteMovie(string title)
+        {
+            string sql = "DELETE FROM " + "dbo.Movie" + " WHERE " + "Title" + " = '" + title + "'";
+            using (SqlConnection con = new SqlConnection(Configurations.ConnectionString))
+            {
+                con.Open();
+                using (SqlCommand command = new SqlCommand(sql, con))
                 {
                     _ = command.ExecuteNonQuery();
                 }

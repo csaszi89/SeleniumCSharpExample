@@ -1,29 +1,32 @@
-﻿using OpenQA.Selenium;
+﻿using MovieStoreWebApp.Test.Attributes;
+using OpenQA.Selenium;
 using System;
 using System.Globalization;
 using WindowsInput;
 
 namespace MovieStoreWebApp.Test.Pages
 {
+    [Url("Movies/Create")]
+    [Title("Create")]
     public class CreateMoviePage : MovieStorePage
     {
         public CreateMoviePage(IWebDriver driver) : base(driver)
         {
         }
 
-        public IWebElement TitleInput => _driver.FindElement(By.Id("Movie_Title"));
+        private IWebElement TitleInput => _driver.FindElement(By.Id("Movie_Title"));
 
-        public IWebElement ReleaseDateInput => _driver.FindElement(By.Id("Movie_ReleaseDate"));
+        private IWebElement ReleaseDateInput => _driver.FindElement(By.Id("Movie_ReleaseDate"));
 
-        public IWebElement GenreInput => _driver.FindElement(By.Id("Movie_Genre"));
+        private IWebElement GenreInput => _driver.FindElement(By.Id("Movie_Genre"));
 
-        public IWebElement PriceInput => _driver.FindElement(By.Id("Movie_Price"));
+        private IWebElement PriceInput => _driver.FindElement(By.Id("Movie_Price"));
 
-        public IWebElement RatingInput => _driver.FindElement(By.Id("Movie_Rating"));
+        private IWebElement RatingInput => _driver.FindElement(By.Id("Movie_Rating"));
 
-        public IWebElement SubmitButton => _driver.FindElement(By.Id("submit-form"));
+        private IWebElement CreateButton => _driver.FindElement(By.Id("submit-form"));
 
-        public void CreateNewMovie((string Title, DateTime ReleaseDate, string Genre, decimal Price, string Rating) movie)
+        public MoviesPage CreateNewMovie((string Title, DateTime ReleaseDate, string Genre, decimal Price, string Rating) movie)
         {
             InputSimulator sim = new InputSimulator();
             TitleInput.SendKeys(movie.Title);
@@ -34,7 +37,8 @@ namespace MovieStoreWebApp.Test.Pages
             GenreInput.SendKeys(movie.Genre);
             PriceInput.SendKeys(movie.Price.ToString(CultureInfo.InvariantCulture));
             RatingInput.SendKeys(movie.Rating);
-            SubmitButton.Click();
+            CreateButton.Click();
+            return new MoviesPage(_driver);
         }
     }
 }
