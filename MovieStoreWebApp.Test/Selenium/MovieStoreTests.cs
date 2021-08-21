@@ -120,16 +120,13 @@ namespace MovieStoreWebApp.Test.Selenium
             using (var browser = StartBrowser(_browserType))
             {
                 var moviesPage = browser.NavigateTo<MoviesPage>();
-                var movies = moviesPage.Movies;
-                Assert.IsFalse(movies.Any(m => m == TestData.Movies.TheHangover.Title));
+                Assert.IsFalse(moviesPage.Movies.Any(m => m == TestData.Movies.TheHangover.Title));
                 var createMoviePage = moviesPage.ClickCreateNewLink();
                 Assert.IsTrue(createMoviePage.Verify());
                 moviesPage = createMoviePage.CreateNewMovie(TestData.Movies.TheHangover);
-                movies = moviesPage.Movies;
-                Assert.IsTrue(movies.Any(m => m == TestData.Movies.TheHangover.Title));
+                Assert.IsTrue(moviesPage.Movies.Any(m => m == TestData.Movies.TheHangover.Title));
             }
         }
-
 
         [Test]
         [NonParallelizable]
@@ -140,13 +137,9 @@ namespace MovieStoreWebApp.Test.Selenium
             using (var browser = StartBrowser(_browserType))
             {
                 var moviesPage = browser.NavigateTo<MoviesPage>();
-                var movies = moviesPage.Movies;
-                Assert.IsTrue(movies.Any(m => m == TestData.Movies.TheHangover.Title));
-                var deleteMoviePage = moviesPage.ClickDeleteMovieLink(TestData.Movies.TheHangover.Title);
-                Assert.IsTrue(deleteMoviePage.VerifyMovie(TestData.Movies.TheHangover.Title));
-                moviesPage = deleteMoviePage.ClickDeleteButton();
-                movies = moviesPage.Movies;
-                Assert.IsFalse(movies.Any(m => m == TestData.Movies.TheHangover.Title));
+                Assert.IsTrue(moviesPage.Movies.Any(m => m == TestData.Movies.TheHangover.Title));
+                moviesPage.DeleteMovie(TestData.Movies.TheHangover.Title);
+                Assert.IsFalse(moviesPage.Movies.Any(m => m == TestData.Movies.TheHangover.Title));
             }
         }
 

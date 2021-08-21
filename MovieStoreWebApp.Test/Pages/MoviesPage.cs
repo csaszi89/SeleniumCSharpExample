@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace MovieStoreWebApp.Test.Pages
 {
@@ -29,12 +30,15 @@ namespace MovieStoreWebApp.Test.Pages
             return new CreateMoviePage(_driver);
         }
 
-        public DeleteMoviePage ClickDeleteMovieLink(string Title)
+        public void DeleteMovie(string title)
         {
-            var movieRow = TableRows.First(row => row.FindElement(By.TagName("td")).Text == Title);
+            var movieRow = TableRows.First(row => row.FindElement(By.TagName("td")).Text == title);
             var deleteLink = movieRow.FindElement(By.LinkText("Delete"));
             deleteLink.Click();
-            return new DeleteMoviePage(_driver);
+            Thread.Sleep(500);
+            var confirmation = _driver.SwitchTo().ActiveElement();
+            var deleteButton = confirmation.FindElement(By.Id("deleteBtn"));
+            deleteButton.Click();
         }
 
         public void SearchMovie(string searchTerm)
