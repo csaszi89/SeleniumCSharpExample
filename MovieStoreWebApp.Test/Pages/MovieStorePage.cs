@@ -31,12 +31,14 @@ namespace MovieStoreWebApp.Test.Pages
 
         public virtual string Title => $"{((TitleAttribute)Attribute.GetCustomAttribute(GetType(), typeof(TitleAttribute))).Title} - {TitleConstant}";
 
+        public virtual string H1 => $"{((H1Attribute)Attribute.GetCustomAttribute(GetType(), typeof(H1Attribute))).H1}";
+
         public virtual bool Verify()
         {
             try
             {
                 var wait = new WebDriverWait(_driver, _pageLoadTimeout);
-                return wait.Until(ExpectedConditions.UrlToBe(Url)) && wait.Until(ExpectedConditions.TitleIs(Title));
+                return wait.Until(ExpectedConditions.UrlToBe(Url)) && wait.Until(ExpectedConditions.TitleIs(Title)) && wait.Until((driver) => driver.FindElement(By.TagName("h1")).Text == H1);
             }
             catch (WebDriverTimeoutException)
             {

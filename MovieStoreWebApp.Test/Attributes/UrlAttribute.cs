@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieStoreWebApp.Test.Utils;
+using System;
 
 namespace MovieStoreWebApp.Test.Attributes
 {
@@ -7,6 +8,7 @@ namespace MovieStoreWebApp.Test.Attributes
     {
         public UrlAttribute(string url)
         {
+            Argument.VerifyNotNull(url);
             Url = url;
         }
 

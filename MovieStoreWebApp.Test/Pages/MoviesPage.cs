@@ -8,6 +8,7 @@ namespace MovieStoreWebApp.Test.Pages
 {
     [Url("Movies")]
     [Title("Movies")]
+    [H1("Movies")]
     public class MoviesPage : MovieStorePage
     {
         public MoviesPage(IWebDriver driver) : base(driver)

@@ -4,7 +4,8 @@ using OpenQA.Selenium;
 namespace MovieStoreWebApp.Test.Pages
 {
     [Url("")]
-    [Title("Home page")]
+    [Title("Home")]
+    [H1("Welcome")]
     public class HomePage : MovieStorePage
     {
         public const string MoviesLinkText = "Movies";

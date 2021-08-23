@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\H1Attribute.cs" />
     <Compile Include="Attributes\TitleAttribute.cs" />
     <Compile Include="Attributes\UrlAttribute.cs" />
     <Compile Include="Definitions\BrowserType.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="Selenium\MovieStoreTests.cs" />
     <Compile Include="TestSetInitializer.cs" />
     <Compile Include="UIAutomation\UIAutomationTests.cs" />
+    <Compile Include="Utils\Argument.cs" />
     <Compile Include="Utils\Configurations.cs" />
     <Compile Include="Utils\Retry.cs" />
     <Compile Include="Utils\TestData.cs" />

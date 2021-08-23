@@ -8,6 +8,7 @@ namespace MovieStoreWebApp.Test.Pages
 {
     [Url("Movies/Create")]
     [Title("Create")]
+    [H1("Create")]
     public class CreateMoviePage : MovieStorePage
     {
         public CreateMoviePage(IWebDriver driver) : base(driver)
