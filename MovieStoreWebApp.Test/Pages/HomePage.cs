@@ -11,13 +11,6 @@ namespace MovieStoreWebApp.Test.Pages
         public const string MoviesLinkText = "Movies";
         public const string PrivacyLinkText = "Privacy";
 
-        /// <summary>
-        /// Ctor for UI Automation tests
-        /// </summary>
-        public HomePage()
-        {
-        }
-
         public HomePage(IWebDriver driver) : base(driver)
         {
         }

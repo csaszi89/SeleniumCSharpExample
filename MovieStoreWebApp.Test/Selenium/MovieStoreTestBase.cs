@@ -2,28 +2,33 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Remote;
 using System;
 
 namespace MovieStoreWebApp.Test.Selenium
 {
     public class MovieStoreTestBase
     {
-        protected IWebDriver StartBrowser(BrowserType browserType)
+        protected IWebDriver StartBrowser(BrowserType browser)
         {
-            if (browserType == BrowserType.Chrome)
+            DriverOptions options;
+            switch (browser)
             {
-                var chromeOptions = new ChromeOptions();
-                chromeOptions.AddArgument("--start-maximized");
-                return new ChromeDriver(ChromeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory, FileNames.ChromeDriverExecutable), chromeOptions);
+                case BrowserType.Chrome:
+                    options = new ChromeOptions();
+                    break;
+                case BrowserType.MicrosoftEdge:
+                    options = new EdgeOptions();
+                    break;
+                default:
+                    throw new NotSupportedException($"Browser type {browser} not supported");
             }
-            if (browserType == BrowserType.MicrosoftEdge)
-            {
-                var driver = new EdgeDriver(EdgeDriverService.CreateDefaultService(AppDomain.CurrentDomain.BaseDirectory, FileNames.EdgeDriverExecutable));
-                driver.Manage().Window.Maximize();
-                return driver;
-            }
-            // Other browsers here...
-            throw new NotSupportedException($"Browser type {browserType} not supported");
+
+            options.UnhandledPromptBehavior = UnhandledPromptBehavior.Ignore;
+            options.AcceptInsecureCertificates = true;
+            var driver = new RemoteWebDriver(new Uri("http://192.168.1.107:4444"), options);
+            driver.Manage().Window.Maximize();
+            return driver;
         }
     }
 }

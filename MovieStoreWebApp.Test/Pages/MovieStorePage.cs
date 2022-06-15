@@ -11,13 +11,6 @@ namespace MovieStoreWebApp.Test.Pages
         private readonly TimeSpan _pageLoadTimeout = TimeSpan.FromSeconds(3);
         protected readonly IWebDriver _driver;
 
-        /// <summary>
-        /// Ctor for UI Automation tests
-        /// </summary>
-        protected MovieStorePage()
-        {
-        }
-
         protected MovieStorePage(IWebDriver driver)
         {
             _driver = driver;
