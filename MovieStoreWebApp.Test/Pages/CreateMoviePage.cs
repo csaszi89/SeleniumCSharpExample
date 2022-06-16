@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using System;
 using System.Globalization;
-using WindowsInput;
 
 namespace MovieStoreWebApp.Test.Pages
 {
@@ -29,10 +28,9 @@ namespace MovieStoreWebApp.Test.Pages
 
         public MoviesPage CreateNewMovie((string Title, DateTime ReleaseDate, string Genre, decimal Price, string Rating) movie)
         {
-            InputSimulator sim = new InputSimulator();
             TitleInput.SendKeys(movie.Title);
             ReleaseDateInput.SendKeys(movie.ReleaseDate.Year.ToString());
-            sim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RIGHT);
+            ReleaseDateInput.SendKeys(Keys.Right);
             ReleaseDateInput.SendKeys(movie.ReleaseDate.Month.ToString());
             ReleaseDateInput.SendKeys(movie.ReleaseDate.Day.ToString());
             GenreInput.SendKeys(movie.Genre);
