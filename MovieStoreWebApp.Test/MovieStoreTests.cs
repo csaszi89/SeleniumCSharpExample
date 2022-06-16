@@ -5,8 +5,9 @@ using MovieStoreWebApp.Test.Pages;
 using MovieStoreWebApp.Test.Utils;
 using NUnit.Framework;
 using System.Linq;
+using System.Threading;
 
-namespace MovieStoreWebApp.Test.Selenium
+namespace MovieStoreWebApp.Test
 {
     [TestFixture(BrowserType.Chrome)]
     [TestFixture(BrowserType.MicrosoftEdge)]
@@ -159,9 +160,16 @@ namespace MovieStoreWebApp.Test.Selenium
         }
 
         [Test]
-        public void TestThatMovieDetailsCanBeRead()
+        [Description("Testing that movie details page can be open")]
+        [Category(TestCategory.Regression), Category(TestCategory.Positive)]
+        public void TestThatMovieDetailsPageCanBeOpen()
         {
-
+            using (var browser = StartBrowser(_browserType))
+            {
+                var moviesPage = browser.NavigateTo<MoviesPage>();
+                var detailsPage = moviesPage.ClickDetailsLink(0);
+                Assert.IsTrue(detailsPage.VerifyMovieDetails(TestData.Movies.Titanic.Title));
+            }
         }
 
         [SetUp]

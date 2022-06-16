@@ -5,7 +5,7 @@ using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Remote;
 using System;
 
-namespace MovieStoreWebApp.Test.Selenium
+namespace MovieStoreWebApp.Test
 {
     public class MovieStoreTestBase
     {

@@ -62,13 +62,14 @@
     <Compile Include="Extensions\IWebDriverExtensions.cs" />
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Pages\CreateMoviePage.cs" />
+    <Compile Include="Pages\DetailsPage.cs" />
     <Compile Include="Pages\MovieStorePage.cs" />
     <Compile Include="Pages\HomePage.cs" />
     <Compile Include="Pages\MoviesPage.cs" />
     <Compile Include="Pages\PrivacyPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Selenium\MovieStoreTestBase.cs" />
-    <Compile Include="Selenium\MovieStoreTests.cs" />
+    <Compile Include="MovieStoreTestBase.cs" />
+    <Compile Include="MovieStoreTests.cs" />
     <Compile Include="TestSetInitializer.cs" />
     <Compile Include="Utils\Argument.cs" />
     <Compile Include="Utils\Configurations.cs" />

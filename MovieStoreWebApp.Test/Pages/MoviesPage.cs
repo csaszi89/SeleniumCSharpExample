@@ -31,6 +31,14 @@ namespace MovieStoreWebApp.Test.Pages
             return new CreateMoviePage(_driver);
         }
 
+        public DetailsPage ClickDetailsLink(int rowIndex)
+        {
+            var row = TableRows.ToList()[rowIndex];
+            var link = row.FindElement(By.LinkText("Details"));
+            link.Click();
+            return new DetailsPage(_driver);
+        }
+
         public void DeleteMovie(string title, bool cancel = false)
         {
             var movieRow = TableRows.First(row => row.FindElement(By.TagName("td")).Text == title);
