@@ -1,9 +1,9 @@
-﻿using MovieStoreWebApp.Test.Attributes;
+﻿using MovieStoryWebApp.Test.Utils.Attributes;
 using OpenQA.Selenium;
 using System;
 using System.Globalization;
 
-namespace MovieStoreWebApp.Test.Pages
+namespace MovieStoryWebApp.Test.Utils.Pages
 {
     [Url("Movies/Create")]
     [Title("Create")]

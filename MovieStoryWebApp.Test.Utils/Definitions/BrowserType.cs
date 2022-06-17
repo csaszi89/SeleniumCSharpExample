@@ -1,4 +1,4 @@
-﻿namespace MovieStoreWebApp.Test.Definitions
+﻿namespace MovieStoryWebApp.Test.Utils.Definitions
 {
     public enum BrowserType
     {

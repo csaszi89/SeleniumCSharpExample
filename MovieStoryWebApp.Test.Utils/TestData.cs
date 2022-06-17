@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MovieStoreWebApp.Test.Utils
+namespace MovieStoryWebApp.Test.Utils
 {
     public static class TestData
     {

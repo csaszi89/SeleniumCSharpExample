@@ -1,11 +1,10 @@
-﻿using MovieStoreWebApp.Test.Definitions;
-using MovieStoreWebApp.Test.Extensions;
-using MovieStoreWebApp.Test.Helpers;
-using MovieStoreWebApp.Test.Pages;
-using MovieStoreWebApp.Test.Utils;
+﻿using MovieStoryWebApp.Test.Utils;
+using MovieStoryWebApp.Test.Utils.Definitions;
+using MovieStoryWebApp.Test.Utils.Extensions;
+using MovieStoryWebApp.Test.Utils.Helpers;
+using MovieStoryWebApp.Test.Utils.Pages;
 using NUnit.Framework;
 using System.Linq;
-using System.Threading;
 
 namespace MovieStoreWebApp.Test
 {

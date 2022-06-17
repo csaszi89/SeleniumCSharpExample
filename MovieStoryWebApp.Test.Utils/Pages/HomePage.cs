@@ -1,7 +1,7 @@
-﻿using MovieStoreWebApp.Test.Attributes;
+﻿using MovieStoryWebApp.Test.Utils.Attributes;
 using OpenQA.Selenium;
 
-namespace MovieStoreWebApp.Test.Pages
+namespace MovieStoryWebApp.Test.Utils.Pages
 {
     [Url("")]
     [Title("Home")]

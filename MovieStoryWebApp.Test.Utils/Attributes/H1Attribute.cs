@@ -1,7 +1,6 @@
-﻿using MovieStoreWebApp.Test.Utils;
-using System;
+﻿using System;
 
-namespace MovieStoreWebApp.Test.Attributes
+namespace MovieStoryWebApp.Test.Utils.Attributes
 {
     public class H1Attribute : Attribute
     {

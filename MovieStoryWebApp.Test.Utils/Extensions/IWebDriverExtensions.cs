@@ -1,8 +1,8 @@
-﻿using MovieStoreWebApp.Test.Pages;
+﻿using MovieStoryWebApp.Test.Utils.Pages;
 using OpenQA.Selenium;
 using System;
 
-namespace MovieStoreWebApp.Test.Extensions
+namespace MovieStoryWebApp.Test.Utils.Extensions
 {
     public static class IWebDriverExtensions
     {

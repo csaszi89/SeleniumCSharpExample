@@ -1,7 +1,6 @@
-﻿using MovieStoreWebApp.Test.Utils;
-using System;
+﻿using System;
 
-namespace MovieStoreWebApp.Test.Attributes
+namespace MovieStoryWebApp.Test.Utils.Attributes
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
     public class UrlAttribute : Attribute

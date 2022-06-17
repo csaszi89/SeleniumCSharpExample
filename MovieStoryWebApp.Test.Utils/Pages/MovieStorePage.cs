@@ -1,10 +1,10 @@
-﻿using MovieStoreWebApp.Test.Attributes;
+﻿using MovieStoryWebApp.Test.Utils.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace MovieStoreWebApp.Test.Pages
+namespace MovieStoryWebApp.Test.Utils.Pages
 {
     public abstract class MovieStorePage
     {

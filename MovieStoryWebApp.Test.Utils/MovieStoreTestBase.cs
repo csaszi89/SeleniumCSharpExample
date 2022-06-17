@@ -1,15 +1,15 @@
-﻿using MovieStoreWebApp.Test.Definitions;
+﻿using MovieStoryWebApp.Test.Utils.Definitions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Remote;
 using System;
 
-namespace MovieStoreWebApp.Test
+namespace MovieStoryWebApp.Test.Utils
 {
     public class MovieStoreTestBase
     {
-        protected IWebDriver StartBrowser(BrowserType browser)
+        public IWebDriver StartBrowser(BrowserType browser)
         {
             DriverOptions options;
             switch (browser)

@@ -1,8 +1,7 @@
-﻿using MovieStoreWebApp.Test.Utils;
-using System;
+﻿using System;
 using System.Data.SqlClient;
 
-namespace MovieStoreWebApp.Test.Helpers
+namespace MovieStoryWebApp.Test.Utils.Helpers
 {
     public static class DBHelper
     {

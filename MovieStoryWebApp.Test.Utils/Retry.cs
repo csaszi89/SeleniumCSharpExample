@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace MovieStoreWebApp.Test.Utils
+namespace MovieStoryWebApp.Test.Utils
 {
     public static class Retry
     {
