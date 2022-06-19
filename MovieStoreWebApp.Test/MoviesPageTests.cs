@@ -11,30 +11,18 @@ namespace MovieStoreWebApp.Test
     [TestFixture(BrowserType.Chrome)]
     [TestFixture(BrowserType.MicrosoftEdge)]
     [Parallelizable(ParallelScope.All)]
-    public class MovieStoreTests : MovieStoreTestBase
+    public class MoviesPageTests : MovieStoreTestBase
     {
         private readonly BrowserType _browserType;
 
-        public MovieStoreTests(BrowserType browserType)
+        public MoviesPageTests(BrowserType browserType)
         {
             _browserType = browserType;
         }
 
         [Test]
-        [Description("The MovieStore Home page can be open")]
         [Category(TestCategory.Smoke)]
-        public void TestThatHomePageCanBeOpen()
-        {
-            using (var browser = StartBrowser(_browserType))
-            {
-                Assert.IsTrue(browser.NavigateTo<HomePage>().Verify());
-            }
-        }
-
-        [Test]
-        [Description("The MovieStore Movies page can be open")]
-        [Category(TestCategory.Smoke)]
-        public void TestThatMoviesPageCanBeOpen()
+        public void Test_NavigateToMoviesPage()
         {
             using (var browser = StartBrowser(_browserType))
             {
@@ -43,46 +31,8 @@ namespace MovieStoreWebApp.Test
         }
 
         [Test]
-        [Description("The MovieStore Privacy page can be open")]
         [Category(TestCategory.Smoke)]
-        public void TestThatPrivacyPageCanBeOpen()
-        {
-            using (var browser = StartBrowser(_browserType))
-            {
-                Assert.IsTrue(browser.NavigateTo<PrivacyPage>().Verify());
-            }
-        }
-
-        [Test]
-        [Description("The Movies button navigates to the Movies page")]
-        [Category(TestCategory.Smoke)]
-        public void TestThatUserCanNavigateToMoviesPage()
-        {
-            using (var browser = StartBrowser(_browserType))
-            {
-                var homePage = browser.NavigateTo<HomePage>();
-                var moviesPage = homePage.ClickMoviesLink();
-                Assert.IsTrue(moviesPage.Verify());
-            }
-        }
-
-        [Test]
-        [Description("The Privacy button navigates to the Privacy page")]
-        [Category(TestCategory.Smoke)]
-        public void TestThatUserCanNavigateToPrivacyPage()
-        {
-            using (var browser = StartBrowser(_browserType))
-            {
-                var homePage = browser.NavigateTo<HomePage>();
-                var privacyPage = homePage.ClickPrivacyLink();
-                Assert.IsTrue(privacyPage.Verify());
-            }
-        }
-
-        [Test]
-        [Description("Testing seed data is present correctly")]
-        [Category(TestCategory.Smoke)]
-        public void TestThatSeedDataIsPresentCorrectly()
+        public void Test_SeedData()
         {
             using (var browser = StartBrowser(_browserType))
             {
@@ -97,9 +47,8 @@ namespace MovieStoreWebApp.Test
         }
 
         [Test]
-        [Description("Testing the search moview operation")]
         [Category(TestCategory.Regression), Category(TestCategory.Positive)]
-        public void TestThatMovieCanBeSearched()
+        public void Test_Search()
         {
             using (var browser = StartBrowser(_browserType))
             {
@@ -114,9 +63,8 @@ namespace MovieStoreWebApp.Test
 
         [Test]
         [NonParallelizable]
-        [Description("Testing the Create new movie operation")]
         [Category(TestCategory.Regression), Category(TestCategory.Positive)]
-        public void TestThatMovieCanBeCreated()
+        public void Test_Create()
         {
             using (var browser = StartBrowser(_browserType))
             {
@@ -131,9 +79,8 @@ namespace MovieStoreWebApp.Test
 
         [Test]
         [NonParallelizable]
-        [Description("Testing the Delete movie operation")]
         [Category(TestCategory.Regression), Category(TestCategory.Positive)]
-        public void TestThatMovieCanBeDeleted()
+        public void Test_Delete()
         {
             using (var browser = StartBrowser(_browserType))
             {
@@ -147,7 +94,7 @@ namespace MovieStoreWebApp.Test
         [Test]
         [Description("Testing that deleting a movie can be cancelled")]
         [Category(TestCategory.Regression), Category(TestCategory.Positive)]
-        public void TestThatDeletingMovieCanBeCancelled()
+        public void Test_CancelDelete()
         {
             using (var browser = StartBrowser(_browserType))
             {
@@ -159,23 +106,22 @@ namespace MovieStoreWebApp.Test
         }
 
         [Test]
-        [Description("Testing that movie details page can be open")]
         [Category(TestCategory.Regression), Category(TestCategory.Positive)]
-        public void TestThatMovieDetailsPageCanBeOpen()
+        public void Test_Details()
         {
             using (var browser = StartBrowser(_browserType))
             {
                 var moviesPage = browser.NavigateTo<MoviesPage>();
                 var detailsPage = moviesPage.ClickDetailsLink(0);
                 Assert.IsTrue(detailsPage.VerifyMovieDetails(TestData.Movies.Titanic.Title));
+
             }
         }
 
         [SetUp]
         public void SetUp()
         {
-            // SetUp db before test TestThatMovieCanBeDeleted
-            if (TestContext.CurrentContext.Test.MethodName == nameof(TestThatMovieCanBeDeleted))
+            if (TestContext.CurrentContext.Test.MethodName == nameof(Test_Delete))
             {
                 DBHelper.AddMovie(TestData.Movies.TheHangover);
             }
@@ -184,8 +130,7 @@ namespace MovieStoreWebApp.Test
         [TearDown]
         public void TearDown()
         {
-            // Clean db after test TestThatMovieCanBeCreated
-            if (TestContext.CurrentContext.Test.MethodName == nameof(TestThatMovieCanBeCreated))
+            if (TestContext.CurrentContext.Test.MethodName == nameof(Test_Create))
             {
                 DBHelper.DeleteMovie(TestData.Movies.TheHangover.Title);
             }

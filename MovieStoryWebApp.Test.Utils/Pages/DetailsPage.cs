@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace MovieStoryWebApp.Test.Utils.Pages
 {
-    [Url("")]
     [Title("Details")]
     [H1("Details")]
     public class DetailsPage : MovieStorePage

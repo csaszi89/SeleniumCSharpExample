@@ -11,5 +11,7 @@ namespace MovieStoryWebApp.Test.Utils.Pages
         public PrivacyPage(IWebDriver driver) : base(driver)
         {
         }
+
+        public IWebElement P => _driver.FindElement(By.TagName("p"));
     }
 }
