@@ -1,16 +1,16 @@
-﻿using MovieStoryWebApp.Test.Utils.Attributes;
+﻿using MovieStoreWebApp.Test.Utils.Attributes;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using ExpectedConditions = SeleniumExtras.WaitHelpers.ExpectedConditions;
 
-namespace MovieStoryWebApp.Test.Utils.Pages
+namespace MovieStoreWebApp.Test.Utils.Pages
 {
     public abstract class MovieStorePage
     {
         private readonly TimeSpan _pageLoadTimeout = TimeSpan.FromSeconds(3);
         protected readonly IWebDriver _driver;
-        private readonly NavigationBar _navBar;
+        private NavigationBar _navBar;
 
         protected MovieStorePage(IWebDriver driver)
         {
@@ -27,7 +27,7 @@ namespace MovieStoryWebApp.Test.Utils.Pages
 
         public virtual string H1 => $"{((H1Attribute)Attribute.GetCustomAttribute(GetType(), typeof(H1Attribute))).H1}";
 
-        public NavigationBar NavigationBar => _navBar ?? new NavigationBar(_driver);
+        public NavigationBar NavigationBar => _navBar ?? (_navBar = new NavigationBar(_driver));
 
         public virtual bool Verify()
         {

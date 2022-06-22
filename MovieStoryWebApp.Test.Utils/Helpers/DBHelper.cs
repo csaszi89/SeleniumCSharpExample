@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 
-namespace MovieStoryWebApp.Test.Utils.Helpers
+namespace MovieStoreWebApp.Test.Utils.Helpers
 {
     public static class DBHelper
     {

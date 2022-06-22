@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieStoreWebApp", "MovieSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStoreWebApp.Test", "MovieStoreWebApp.Test\MovieStoreWebApp.Test.csproj", "{40B55076-0887-4743-8946-EACBBFA6877C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStoryWebApp.Test.Utils", "MovieStoryWebApp.Test.Utils\MovieStoryWebApp.Test.Utils.csproj", "{2F29EDCB-A974-4A66-AEE3-B47C665DC765}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieStoreWebApp.Test.Utils", "MovieStoryWebApp.Test.Utils\MovieStoreWebApp.Test.Utils.csproj", "{2F29EDCB-A974-4A66-AEE3-B47C665DC765}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

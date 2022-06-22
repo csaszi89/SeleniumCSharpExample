@@ -1,7 +1,7 @@
-﻿using MovieStoryWebApp.Test.Utils.Attributes;
+﻿using MovieStoreWebApp.Test.Utils.Attributes;
 using OpenQA.Selenium;
 
-namespace MovieStoryWebApp.Test.Utils.Pages
+namespace MovieStoreWebApp.Test.Utils.Pages
 {
     [Url("Privacy")]
     [Title("Privacy Policy")]

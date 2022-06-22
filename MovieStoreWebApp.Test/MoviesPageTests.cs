@@ -1,8 +1,8 @@
-﻿using MovieStoryWebApp.Test.Utils;
-using MovieStoryWebApp.Test.Utils.Definitions;
-using MovieStoryWebApp.Test.Utils.Extensions;
-using MovieStoryWebApp.Test.Utils.Helpers;
-using MovieStoryWebApp.Test.Utils.Pages;
+﻿using MovieStoreWebApp.Test.Utils;
+using MovieStoreWebApp.Test.Utils.Definitions;
+using MovieStoreWebApp.Test.Utils.Extensions;
+using MovieStoreWebApp.Test.Utils.Helpers;
+using MovieStoreWebApp.Test.Utils.Pages;
 using NUnit.Framework;
 using System.Linq;
 

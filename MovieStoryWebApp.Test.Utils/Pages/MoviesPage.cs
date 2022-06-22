@@ -1,10 +1,10 @@
-﻿using MovieStoryWebApp.Test.Utils.Attributes;
+﻿using MovieStoreWebApp.Test.Utils.Attributes;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace MovieStoryWebApp.Test.Utils.Pages
+namespace MovieStoreWebApp.Test.Utils.Pages
 {
     [Url("Movies")]
     [Title("Movies")]

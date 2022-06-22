@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
 
-namespace MovieStoryWebApp.Test.Utils.Pages
+namespace MovieStoreWebApp.Test.Utils.Pages
 {
     public class NavigationBar
     {

@@ -1,4 +1,4 @@
-﻿namespace MovieStoryWebApp.Test.Utils.Definitions
+﻿namespace MovieStoreWebApp.Test.Utils.Definitions
 {
     public static class TestCategory
     {

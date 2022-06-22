@@ -1,4 +1,4 @@
-﻿namespace MovieStoryWebApp.Test.Utils
+﻿namespace MovieStoreWebApp.Test.Utils
 {
     public static class Configurations
     {

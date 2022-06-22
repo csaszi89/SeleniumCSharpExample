@@ -1,11 +1,11 @@
-﻿using MovieStoryWebApp.Test.Utils.Definitions;
+﻿using MovieStoreWebApp.Test.Utils.Definitions;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Remote;
 using System;
 
-namespace MovieStoryWebApp.Test.Utils
+namespace MovieStoreWebApp.Test.Utils
 {
     public class MovieStoreTestBase
     {

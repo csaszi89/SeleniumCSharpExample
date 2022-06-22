@@ -59,9 +59,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MovieStoryWebApp.Test.Utils\MovieStoryWebApp.Test.Utils.csproj">
+    <ProjectReference Include="..\MovieStoryWebApp.Test.Utils\MovieStoreWebApp.Test.Utils.csproj">
       <Project>{2f29edcb-a974-4a66-aee3-b47c665dc765}</Project>
-      <Name>MovieStoryWebApp.Test.Utils</Name>
+      <Name>MovieStoreWebApp.Test.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
