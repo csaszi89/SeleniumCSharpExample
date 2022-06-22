@@ -1,6 +1,6 @@
 ﻿using MovieStoreWebApp.Test.Utils.Attributes;
+using MovieStoryWebApp.Test.Utils.Models;
 using OpenQA.Selenium;
-using System;
 using System.Globalization;
 
 namespace MovieStoreWebApp.Test.Utils.Pages
@@ -26,7 +26,7 @@ namespace MovieStoreWebApp.Test.Utils.Pages
 
         private IWebElement CreateButton => _driver.FindElement(By.Id("submit-form"));
 
-        public MoviesPage CreateNewMovie((string Title, DateTime ReleaseDate, string Genre, decimal Price, string Rating) movie)
+        public MoviesPage CreateNewMovie(Movie movie)
         {
             TitleInput.SendKeys(movie.Title);
             ReleaseDateInput.SendKeys(movie.ReleaseDate.Year.ToString());

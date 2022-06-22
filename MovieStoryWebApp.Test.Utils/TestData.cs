@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MovieStoryWebApp.Test.Utils.Models;
+using System;
 
 namespace MovieStoreWebApp.Test.Utils
 {
@@ -6,9 +7,8 @@ namespace MovieStoreWebApp.Test.Utils
     {
         public static class Movies
         {
-            public static (string Title, DateTime ReleaseDate, string Genre, decimal Price, string Rating) TheHangover = ("The Hangover", new DateTime(2009, 6, 18), "Comedy", 9.99m, "R");
-
-            public static (string Title, DateTime ReleaseDate, string Genre, decimal Price, string Rating) Titanic = ("Titanic", new DateTime(1998, 1, 22), "Drama", 7.99m, "PG");
+            public static Movie TheHangover = new Movie { Title = "The Hangover", ReleaseDate = new DateTime(2009, 6, 18), Genre = "Comedy", Price = 9.99m, Rating = "R" };
+            public static Movie Titanic = new Movie { Title = "Titanic", ReleaseDate = new DateTime(1998, 1, 22), Genre = "Drama", Price = 7.99m, Rating = "PG" };
         }
     }
 }

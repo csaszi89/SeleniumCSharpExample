@@ -1,7 +1,7 @@
 ﻿using MovieStoreWebApp.Test.Utils;
+using MovieStoreWebApp.Test.Utils.DbHandlers;
 using MovieStoreWebApp.Test.Utils.Definitions;
 using MovieStoreWebApp.Test.Utils.Extensions;
-using MovieStoreWebApp.Test.Utils.Helpers;
 using MovieStoreWebApp.Test.Utils.Pages;
 using NUnit.Framework;
 using System.Linq;
@@ -123,7 +123,8 @@ namespace MovieStoreWebApp.Test
         {
             if (TestContext.CurrentContext.Test.MethodName == nameof(Test_Delete))
             {
-                DBHelper.AddMovie(TestData.Movies.TheHangover);
+                var handler = new MoviesHandler();
+                handler.Create(TestData.Movies.TheHangover);
             }
         }
 
@@ -132,7 +133,8 @@ namespace MovieStoreWebApp.Test
         {
             if (TestContext.CurrentContext.Test.MethodName == nameof(Test_Create))
             {
-                DBHelper.DeleteMovie(TestData.Movies.TheHangover.Title);
+                var handler = new MoviesHandler();
+                handler.Delete(TestData.Movies.TheHangover.Title);
             }
         }
     }
