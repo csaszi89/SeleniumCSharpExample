@@ -26,7 +26,7 @@ namespace MovieStoreWebApp.Test.Utils
 
             options.UnhandledPromptBehavior = UnhandledPromptBehavior.Ignore;
             options.AcceptInsecureCertificates = true;
-            var driver = new RemoteWebDriver(new Uri("http://192.168.1.107:4444"), options);
+            var driver = new RemoteWebDriver(new Uri("http://192.168.1.67:4444"), options);
             driver.Manage().Window.Maximize();
             return driver;
         }
